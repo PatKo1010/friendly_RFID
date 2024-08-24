@@ -7,6 +7,7 @@ import tkinter as tk
 import step1
 import json,os,glob
 import step2
+import wipe_card
 # uvicorn main:app --reload
 app = FastAPI()
 # Add CORS middleware
@@ -41,6 +42,7 @@ def cloneCardData():
 @app.get("/eraseCardInfo")
 def eraseCardInfo ():
     x="Card erased😗"
+    wipe_card.wipe_card()
     print("erase done")
     return {"message": x}
 
