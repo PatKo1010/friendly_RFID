@@ -19,12 +19,17 @@ def copy_4k():
 
     #initiate the cloning scripts for the pm3
     copy_process = subprocess.run(["pm3"], input=UID, encoding="utf-8", capture_output=True).stdout
+    print(copy_process)
     print("UID cloned")
     copy_process_manufacturer = subprocess.run(["pm3"], input=ATQA_SAK, encoding="utf-8", capture_output=True).stdout
+    print(copy_process_manufacturer)
     print("ATQA and SAK cloned")
     copy_process_block0 = subprocess.run(["pm3"], input=block_0, encoding="utf-8", capture_output=True).stdout
+    print(copy_process_block0)
     print("Block 0 copied")
-    copy_process_block0 = subprocess.run(["pm3"], input=remainingblocks_script, encoding="utf-8", capture_output=True).stdout
+    copy_process_remaining = subprocess.run(["pm3"], input=remainingblocks_script, encoding="utf-8", capture_output=True).stdout
+    print(copy_process_remaining)
+    print("Remaining blocks copied")
     
     #delete the dump file
     for filename in glob.glob('*.bin'):
@@ -42,6 +47,7 @@ def copy_1k():
     
     #initiate the scripts on pm3
     copy_process = subprocess.run(["pm3"], input=remainingblocks_script, encoding="utf-8", capture_output=True).stdout
+    print(copy_process)
     print("Blocks cloned")
     
     #delete the dump file
@@ -56,12 +62,12 @@ if (process.find("MIFARE Classic 4K")) !=-1:
     copy_4k()
     print("Copied 4k!")
 
-    subprocess.run(["pm3"], input="hf mf autopwn --4k", encoding="utf-8", capture_output=True).stdout
+    
 elif (process.find("MIFARE Classic 1K")) !=-1:
     copy_1k()
     print("1k cloned")
     
-    subprocess.run(["pm3"], input="hf mf autopwn", encoding="utf-8", capture_output=True).stdout
+    
 else:
     print("No valid card")
      
