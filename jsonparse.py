@@ -29,3 +29,6 @@ with open("cardinfo.txt",'w') as info:
 info.close()
 
 os.remove(os.path.join(os.getcwd(), filename))
+
+# for filename in glob.glob('*.bin'):
+#    os.remove(os.path.join(os.getcwd(), filename))
