@@ -2,6 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import time
+import subprocess
+import tkinter as tk
+import step1
+import json,os,glob
 
 app = FastAPI()
 
@@ -20,8 +24,12 @@ class CloneCardDataRequest(BaseModel):
 
 @app.get("/readCardData")
 def readCardData():
-    time.sleep(3)  
-    x="Hello world!"
+    x="Card read sucessfully. Shady stuff commencing"
+    time.sleep(3)
+    try:
+        step1.reads()  
+    except Exception as e:
+        x=e
     return {"message": x}
 
 @app.post("/cloneCardData", )

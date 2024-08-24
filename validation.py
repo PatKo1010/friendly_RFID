@@ -1,6 +1,4 @@
-import json
-import glob
-import os
+
 import tkinter as tk
 import subprocess
 UID=''
