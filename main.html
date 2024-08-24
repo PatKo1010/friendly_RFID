@@ -164,11 +164,13 @@
         .then(data => {
           loadingIndicator.style.display = 'none';
           spinner.style.display = 'none';
-          document.getElementById('display2').innerText = data.result;
+          document.getElementById('display2').innerText = data.message;
         })
-        .catch(error =>
+        .catch(error => {
           alert("Error occured")
-        );
+          loadingIndicator.style.display = 'none';
+          spinner.style.display = 'none';
+        });
     }
 
 

@@ -33,14 +33,13 @@ def readCardData():
         x=e.message
     return {"message": x}
 
-@app.get("/cloneCardData", )
+@app.get("/cloneCardData")
 def cloneCardData():
     x="Card cloned yaaaaaaaaa"
     try:
         step2.clones()
     except Exception as e:
         x=e.message
-    message = "true"
     return {"message": x}
 
 
