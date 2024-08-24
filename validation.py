@@ -17,6 +17,7 @@ def find_UID():
     return UIDs
 
 def create_privilege():
+    global UID
     print("Place the card to grant access to in the reader")
     UID=find_UID()
     print("\nPRIVILEGED CARD SET")
@@ -24,11 +25,13 @@ def create_privilege():
 def check_privilege():
     print("Place the card on the reader")
     UID_check=find_UID()
+    #print(UID_check+"\n")
+    print(UID)
     if(UID_check == UID):
        print("VALID CARD!")
     else:
        print("INVALID CARD")
-    os.remove(os.path.join(os.getcwd(), filename))
+    
 
 def exit_program():
    root.quit()
