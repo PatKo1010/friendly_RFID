@@ -38,4 +38,10 @@ def cloneCardData():
     print("clone done")
     return {"message": x}
 
+@app.get("/eraseCardInfo")
+def eraseCardInfo ():
+    x="Card erased😗"
+    print("erase done")
+    return {"message": x}
+
 

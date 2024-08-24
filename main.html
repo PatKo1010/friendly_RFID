@@ -94,30 +94,37 @@
       <div class="col-md-6" style="margin-top: 30px">
         <button class="btn btn-primary" id="readButton" type="submit">Read</button>
         <div class="block" style="margin-top: 30px" id="display1">
-          <!-- Content for the block goes here -->
-          <p>This is a block with a display.</p>
+          <p>Try to make ur own card. Start from here!</p>
         </div>
       </div>
       <div class="col-md-6" style="margin-top: 30px">
         <button class="btn btn-primary" id="cloneButton" type="submit">Clone</button>
         <div class="block" style="margin-top: 30px" id="display2">
-          <!-- Content for the block goes here -->
-          <p>This is a block with a display.</p>
+          <p>Read a card before u clone it</p>
         </div>
-
-
       </div>
     </div>
   </div>
 
+  <div class="container" style="margin-top: 30px">
+    <div class="row">
+      <div class="col-md-6" style="margin-top: 30px">
+        <button class="btn btn-primary" id="wipeButton" type="submit">Wipe</button>
+        <div class="block" style="margin-top: 30px" id="display3">
+          <p>Wanna erase any card info? Try this button</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="overlay"></div>
   <div class="spinner"></div>
 
 
   <script>
-    
+
     document.getElementById('readButton').addEventListener('click', getCardData);
     document.getElementById('cloneButton').addEventListener('click', cloneCardData);
+    document.getElementById('wipeButton').addEventListener('click', wipeCardData);
 
     function getCardData() {
       const loadingIndicator = document.querySelector('.overlay');
@@ -183,6 +190,24 @@
       //     loadingIndicator.style.display = 'none';
       //     spinner.style.display = 'none';
       //   });
+    }
+
+    function wipeCardData() {
+      const loadingIndicator = document.querySelector('.overlay');
+      const spinner = document.querySelector('.spinner');
+      loadingIndicator.style.display = 'block';
+      spinner.style.display = 'block';
+      fetchData("http://127.0.0.1:8000/eraseCardInfo")
+        .then(data => {
+          document.getElementById('display3').innerText = data.message;
+          loadingIndicator.style.display = 'none';
+          spinner.style.display = 'none';
+        })
+        .catch(error => {
+          console.log('Error fetching data:', error.message);
+          loadingIndicator.style.display = 'none';
+          spinner.style.display = 'none';
+        });
     }
 
     async function fetchData(url) {
