@@ -8,7 +8,10 @@ for filename in glob.glob('*.json'):
 #for i in jsonfile['blocks']:
 Card=jsonfile["Card"]
 UID=Card['UID']
-ATQA=Card['ATQA']
+ATQA_rev=Card['ATQA']
+ATQA= ATQA_rev[2:]+ATQA_rev[0:2]
+print(ATQA_rev)
+print(ATQA)
 SAK=Card['SAK']
 
 blocks=list(jsonfile['blocks'].values())
