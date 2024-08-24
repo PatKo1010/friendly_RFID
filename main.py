@@ -40,7 +40,7 @@ def cloneCardData():
         step2.clones()
         print("clone done")
     except Exception as e:
-        print("Message: ", e)
+        print("error")
         x=e.message
     return {"message": x}
 
