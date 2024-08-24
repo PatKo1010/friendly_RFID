@@ -12,18 +12,18 @@ def find_UID():
     x=process.find("UID:")
     UIDs=''
     for i in range(x+5,x+16):
-        if i != ' ' and i != '\n':
-            UIDs+=i
+        if process[i] != ' ' and process[i] != '\n':
+            UIDs+=process[i]
     return UIDs
 
 def create_privilege():
-    print("Place the card to grant access in the reader")
+    print("Place the card to grant access to in the reader")
     UID=find_UID()
-    os.remove(os.path.join(os.getcwd(), filename))
+    print("\nPRIVILEGED CARD SET")
 
 def check_privilege():
     print("Place the card on the reader")
-    UID_check=find_UID
+    UID_check=find_UID()
     if(UID_check == UID):
        print("VALID CARD!")
     else:
