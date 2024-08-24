@@ -6,6 +6,7 @@ import subprocess
 import tkinter as tk
 import step1
 import json,os,glob
+import step2
 
 app = FastAPI()
 
@@ -29,14 +30,16 @@ def readCardData():
     try:
         step1.reads()  
     except Exception as e:
-        x=e
+        x=e.message
     return {"message": x}
 
 @app.post("/cloneCardData", )
 def cloneCardData(request: CloneCardDataRequest):
-    print(request)
-    time.sleep(3)
+    try:
+        step2.clones()
+    except Exception as e:
+        x=e.message
     message = "true"
-    return {"result": message}
+    return {"message": x}
 
 
