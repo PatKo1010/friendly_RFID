@@ -19,9 +19,9 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-class CloneCardDataRequest(BaseModel):
-    key1: str
-    key2: str
+# class CloneCardDataRequest(BaseModel):
+#    key1: str
+#    key2: str
 
 @app.get("/readCardData")
 def readCardData():
@@ -33,8 +33,9 @@ def readCardData():
         x=e.message
     return {"message": x}
 
-@app.post("/cloneCardData", )
-def cloneCardData(request: CloneCardDataRequest):
+@app.get("/cloneCardData", )
+def cloneCardData():
+    x="Card cloned yaaaaaaaaa"
     try:
         step2.clones()
     except Exception as e:

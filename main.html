@@ -159,13 +159,7 @@
         key1: 'value1',
         key2: 'value2'
       };
-      fetch('http://127.0.0.1:8000/cloneCardData', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(postData)
-      })
+      fetch('http://127.0.0.1:8000/cloneCardData')
         .then(response => response.json())
         .then(data => {
           loadingIndicator.style.display = 'none';
