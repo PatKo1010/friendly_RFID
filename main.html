@@ -114,18 +114,8 @@
   <div class="spinner"></div>
 
 
-
-
-
-
-
-
-
-
   <script>
-
-
-
+    
     document.getElementById('readButton').addEventListener('click', getCardData);
     document.getElementById('cloneButton').addEventListener('click', cloneCardData);
 
@@ -155,28 +145,63 @@
       const spinner = document.querySelector('.spinner');
       loadingIndicator.style.display = 'block';
       spinner.style.display = 'block';
-      const postData = {
-        key1: 'value1',
-        key2: 'value2'
-      };
-      fetch('http://127.0.0.1:8000/cloneCardData')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-          }
-          return response.json();})
+
+      fetchData('http://127.0.0.1:8000/cloneCardData')
         .then(data => {
-          console.log(data.message);
+          console.log('Data fetched successfully:', data);
           loadingIndicator.style.display = 'none';
           spinner.style.display = 'none';
-          document.getElementById('display2').innerText = data.message;
         })
         .catch(error => {
-          console.log("error");
-          alert("Error occured")
+          console.log('Error fetching data:', error.message);
           loadingIndicator.style.display = 'none';
           spinner.style.display = 'none';
         });
+
+
+
+
+
+
+
+
+      // fetch('http://127.0.0.1:8000/cloneCardData')
+      //   .then(response => {
+      //     if (!response.ok) {
+      //       throw new Error('Network response was not ok ' + response.statusText);
+      //     }
+      //     return response.json();})
+      //   .then(data => {
+      //     console.log(data.message);
+      //     loadingIndicator.style.display = 'none';
+      //     spinner.style.display = 'none';
+      //     document.getElementById('display2').innerText = data.message;
+      //   })
+      //   .catch(error => {
+      //     console.log("error");
+      //     alert("Error occured")
+      //     loadingIndicator.style.display = 'none';
+      //     spinner.style.display = 'none';
+      //   });
+    }
+
+    async function fetchData(url) {
+      try {
+        const response = await fetch(url);
+
+        // Check if the response status is not OK (200-299)
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        // Handle errors
+        console.error('Fetch error:', error);
+        // You can also display an error message to the user or take other actions
+        throw error; // Re-throw the error if you want to handle it further up the call stack
+      }
     }
 
 

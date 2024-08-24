@@ -7,9 +7,8 @@ import tkinter as tk
 import step1
 import json,os,glob
 import step2
-
+# uvicorn main:app --reload
 app = FastAPI()
-
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -26,7 +25,6 @@ app.add_middleware(
 @app.get("/readCardData")
 def readCardData():
     x="Card read sucessfully. Shady stuff commencing"
-    time.sleep(3)
     try:
         step1.reads()  
     except Exception as e:
@@ -36,12 +34,8 @@ def readCardData():
 @app.get("/cloneCardData")
 def cloneCardData():
     x="Card cloned yaaaaaaaaa"
-    try:
-        step2.clones()
-        print("clone done")
-    except Exception as e:
-        print("error")
-        x=e.message
+    step2.clones()
+    print("clone done")
     return {"message": x}
 
 
