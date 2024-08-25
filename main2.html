@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>main</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      padding-top: 60px;
+    }
+
+    .navbar {
+      background-color: #007bff;
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: white !important;
+    }
+
+    .main-container {
+      margin-top: 40px;
+      /* Increased margin below the navbar */
+    }
+
+    .block {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+
+    #scrollUpBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 99;
+      border: none;
+      outline: none;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 18px;
+    }
+
+    #scrollUpBtn:hover {
+      background-color: #0056b3;
+    }
+
+    .wipe-card {
+      background-color: #ffeeee;
+      margin-top: 40px;
+    }
+
+    .how-to-use {
+      margin-top: 60px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    /* Spinner 的 CSS */
+    .spinner {
+      display: none;
+      /* 預設隱藏 */
+      width: 50px;
+      height: 50px;
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Friendly_RFID</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/memberpage.html">Member Page</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container main-container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="block">
+          <h2>Read Card</h2>
+          <div id="display1">
+            Read information from your RFID card.
+          </div>
+          <button class="btn btn-primary mt-3" id="readButton">Read Card</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="block">
+          <h2>Clone Card</h2>
+          <div id="display2">
+            Clone information to a new card.
+          </div>
+          <button class="btn btn-primary mt-3" id="cloneButton">Clone Card</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="block wipe-card">
+          <h2>Wipe Card</h2>
+          <div id="display3">
+            Erase all information from your card.
+          </div>
+          <button class="btn btn-danger mt-3" id="wipeButton">Wipe Card</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional content to make the page scrollable -->
+    <div class="row how-to-use">
+      <div class="col-12">
+        <h2>How to Use</h2>
+        <p>1. <strong>Read Card:</strong> Place your RFID card on the reader and click the "Read Card" button to view
+          its
+          contents.</p>
+        <p>2. <strong>Clone Card:</strong> After reading a card, place a new blank card on the reader and click "Clone
+          Card" to copy the information.</p>
+        <p>3. <strong>Wipe Card:</strong> To erase all data from a card, place it on the reader and click the "Wipe
+          Card"
+          button. Use with caution!</p>
+        <h2 class="mt-4">Safety and Privacy</h2>
+        <p>Always handle your RFID cards with care. Do not share sensitive information stored on your cards. If you
+          suspect unauthorized access, use the "Wipe Card" function and contact support immediately.</p>
+        <h2 class="mt-4">Troubleshooting</h2>
+        <p>If you encounter any issues while using our RFID system, try the following steps:</p>
+        <ul>
+          <li>Ensure the card is placed correctly on the reader</li>
+          <li>Check if the reader is properly connected</li>
+          <li>Restart the application if it's unresponsive</li>
+          <li>Contact our support team for further assistance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <div class="spinner"></div>
+
+  <button id="scrollUpBtn" title="Go to top">↑</button>
+
+  <script>
+    var scrollUpBtn = document.getElementById("scrollUpBtn");
+
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollUpBtn.style.display = "block";
+      } else {
+        scrollUpBtn.style.display = "none";
+      }
+    }
+
+    scrollUpBtn.onclick = function () {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+  </script>
+
+  <script>
+
+    document.getElementById('readButton').addEventListener('click', getCardData);
+    document.getElementById('cloneButton').addEventListener('click', cloneCardData);
+    document.getElementById('wipeButton').addEventListener('click', wipeCardData);
+
+    function getCardData() {
+      const loadingIndicator = document.querySelector('.overlay');
+      const spinner = document.querySelector('.spinner');
+      loadingIndicator.style.display = 'block';
+      spinner.style.display = 'block';
+
+      fetch('http://127.0.0.1:8000/readCardData')
+        .then(response => response.json())
+        .then(data => {
+          loadingIndicator.style.display = 'none';
+          spinner.style.display = 'none';
+          document.getElementById('display1').innerText = data.message;
+        })
+        .catch(error => {
+          loadingIndicator.style.display = 'none'
+          spinner.style.display = 'none'
+          alert(error.message)
+        }
+        );
+    }
+
+    function cloneCardData() {
+      const loadingIndicator = document.querySelector('.overlay');
+      const spinner = document.querySelector('.spinner');
+      loadingIndicator.style.display = 'block';
+      spinner.style.display = 'block';
+
+      fetchData('http://127.0.0.1:8000/cloneCardData')
+        .then(data => {
+          document.getElementById('display2').innerText = data.message;
+          loadingIndicator.style.display = 'none';
+          spinner.style.display = 'none';
+        })
+        .catch(error => {
+          alert(error.message);
+          loadingIndicator.style.display = 'none';
+          spinner.style.display = 'none';
+        });
+    }
+
+    function wipeCardData() {
+      const loadingIndicator = document.querySelector('.overlay');
+      const spinner = document.querySelector('.spinner');
+      loadingIndicator.style.display = 'block';
+      spinner.style.display = 'block';
+      fetchData("http://127.0.0.1:8000/eraseCardInfo")
+        .then(data => {
+          document.getElementById('display3').innerText = data.message;
+          loadingIndicator.style.display = 'none';
+          spinner.style.display = 'none';
+        })
+        .catch(error => {
+          console.log('Error fetching data:', error.message);
+          loadingIndicator.style.display = 'none';
+          spinner.style.display = 'none';
+        });
+    }
+
+    async function fetchData(url) {
+      try {
+        const response = await fetch(url);
+
+        // Check if the response status is not OK (200-299)
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        // Handle errors
+        console.error('Fetch error:', error);
+        // You can also display an error message to the user or take other actions
+        throw error; // Re-throw the error if you want to handle it further up the call stack
+      }
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
