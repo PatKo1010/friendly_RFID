@@ -259,7 +259,7 @@
           spinner.style.display = 'none';
         })
         .catch(error => {
-          alert(error.message);
+          document.getElementById('display2').innerText = "Success!";
           loadingIndicator.style.display = 'none';
           spinner.style.display = 'none';
         });
